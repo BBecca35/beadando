@@ -19,6 +19,9 @@ public class VariableMap {
         this.map = map;
     }
 
+    public VariableMap(int i, int i1) {
+    }
+
     public int getNumberOfColumns() {
         return numberOfColumns;
     }

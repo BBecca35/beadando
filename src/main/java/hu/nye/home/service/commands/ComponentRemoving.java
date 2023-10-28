@@ -4,7 +4,6 @@ import hu.nye.home.model.MapVO;
 import hu.nye.home.model.VariableMap;
 
 public class ComponentRemoving {
-
     public static void removeComponent(String coordinate2, MapVO old, VariableMap changed) {
         int[] position = StringConverter.string2Int(coordinate2);
         String[][] map = changed.getMap();
@@ -19,6 +18,4 @@ public class ComponentRemoving {
         changed.setMap(map);
 
     }
-
-
 }

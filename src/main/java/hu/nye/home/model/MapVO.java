@@ -3,20 +3,36 @@ package hu.nye.home.model;
 import java.util.Arrays;
 
 public class MapVO {
-    private final int numberOfRows;
-    private final int numberOFColums;
-    private final String[][] map;
+    private int numberOfRows;
+    private int numberOFColums;
+    private String[][] map;
 
     public MapVO(int numbersOfRows, int numberOFColums, String[][] map) {
         this.numberOfRows = numbersOfRows;
         this.numberOFColums = numberOFColums;
         this.map = map;
     }
+    public MapVO(int numbersOfRows, int numberOFColums) {
+        this.numberOfRows = numbersOfRows;
+        this.numberOFColums = numberOFColums;
+
+    }
+
+    public void setNumberOfRows(int numberOfRows) {
+        this.numberOfRows = numberOfRows;
+    }
+
+    public void setNumberOFColums(int numberOFColums) {
+        this.numberOFColums = numberOFColums;
+    }
+
+    public void setMap(String[][] map) {
+        this.map = map;
+    }
 
     public int getNumberOfRows() {
         return numberOfRows;
     }
-
     public int getNumberOFColums() {
         return numberOFColums;
     }
