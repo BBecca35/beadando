@@ -1,12 +1,10 @@
 package hu.nye.home.service.map;
 
-import hu.nye.home.service.map.exceptions.MapReadException;
+import hu.nye.home.service.exceptions.MapReadException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.exceptions.base.MockitoException;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.BufferedReader;

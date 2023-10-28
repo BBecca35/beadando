@@ -1,6 +1,6 @@
 package hu.nye.home.service.map;
 
-import hu.nye.home.service.map.exceptions.MapReadException;
+import hu.nye.home.service.exceptions.MapReadException;
 
 import java.util.List;
 
