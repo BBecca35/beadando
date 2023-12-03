@@ -3,52 +3,37 @@ package hu.nye.home.model;
 import java.util.Arrays;
 
 public class MapVO {
-    private int numberOfRows;
-    private int numberOFColums;
+    private int mapSize;
     private String[][] map;
 
-    public MapVO(int numbersOfRows, int numberOFColums, String[][] map) {
-        this.numberOfRows = numbersOfRows;
-        this.numberOFColums = numberOFColums;
-        this.map = map;
-    }
-    public MapVO(int numbersOfRows, int numberOFColums) {
-        this.numberOfRows = numbersOfRows;
-        this.numberOFColums = numberOFColums;
-
-    }
-
-    public void setNumberOfRows(int numberOfRows) {
-        this.numberOfRows = numberOfRows;
-    }
-
-    public void setNumberOFColums(int numberOFColums) {
-        this.numberOFColums = numberOFColums;
-    }
-
-    public void setMap(String[][] map) {
+    public MapVO(int mapSize, String[][] map) {
+        this.mapSize = mapSize;
         this.map = map;
     }
 
-    public int getNumberOfRows() {
-        return numberOfRows;
+    public MapVO(String[][] map) {
+        this.map = map;
     }
-    public int getNumberOFColums() {
-        return numberOFColums;
+
+    public MapVO() {
+
     }
+
+    public int getMapSize() {
+        return mapSize;
+    }
+
+    public void setMapSize(int mapSize) {
+        this.mapSize = mapSize;
+    }
+
 
     public String[][] getMap() {
         return map;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("MapVO{");
-        sb.append("numberOfRows=").append(numberOfRows);
-        sb.append(", numberOFColums=").append(numberOFColums);
-        sb.append(", map=").append(Arrays.toString(map));
-        sb.append('}');
-        return sb.toString();
+    public void setMap(String[][] map) {
+        this.map = map;
     }
 
     @Override
@@ -56,20 +41,43 @@ public class MapVO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MapVO mapVO = (MapVO) o;
+        MapVO that = (MapVO) o;
 
-        if (numberOfRows != mapVO.numberOfRows) return false;
-        if (numberOFColums != mapVO.numberOFColums) return false;
-        return Arrays.deepEquals(map, mapVO.map);
+        if (mapSize != that.mapSize) return false;
+        return Arrays.deepEquals(map, that.map);
     }
 
     @Override
     public int hashCode() {
-        int result = numberOfRows;
-        result = 31 * result + numberOFColums;
+        int result = mapSize;
         result = 31 * result + Arrays.deepHashCode(map);
         return result;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder mapString = new StringBuilder();
+        for (int i = 0; i < map.length; i++) {
+            if (i == 0) {
+                mapString.append("   ");
+                for (int j = 0; j < map[0].length; j++) {
+                    mapString.append((char) ('A' + j)).append(" ");
+                }
+                mapString.append("\n");
+
+            }
+            if(i < 9){
+                mapString.append(" ");
+            }
+            for (int j = 0; j < map[0].length; j++) {
+                if (j == 0) {
+                    mapString.append(i + 1).append(" ");
+                }
+                mapString.append(map[i][j]).append(" ");
+            }
+            mapString.append("\n");
+        }
+
+        return mapString.toString();
+    }
 }
-
-

@@ -1,21 +1,40 @@
 package hu.nye.home.service.commands;
 
 import hu.nye.home.model.MapVO;
-import hu.nye.home.model.VariableMap;
+import hu.nye.home.service.util.Utils;
+import hu.nye.home.service.util.UtilsImp;
+import hu.nye.home.service.validator.Validators;
+import hu.nye.home.service.validator.ValidatorsImp;
+
+import java.util.List;
+import java.util.SortedMap;
 
 public class ComponentRemoving {
-    public static void removeComponent(String coordinate2, MapVO old, VariableMap changed) {
-        int[] position = StringConverter.string2Int(coordinate2);
+    public static String removeComponent(String coordinate2, SortedMap<String, List<String>> components, MapVO changed) {
+        Validators validators = new ValidatorsImp();
+        String answer = null;
+        Utils utils = new UtilsImp();
+        int[] position = utils.string2Int(coordinate2);
         String[][] map = changed.getMap();
-
-        for (int i = 0; i < map.length; i++) {
-            for(int j = 0; j < map[0].length; j++){
-                if(j == position[0]-1 && i == position[1]-1){
-                    map[i][j] = old.getMap()[i][j];
-                }
+        int mapsize = map.length;
+        boolean checkCoordinate;
+        checkCoordinate = validators.IsTheCoordinateCorrect(position, mapsize);
+        if (!checkCoordinate) {
+            answer = "A visszavonás nem történt meg. A koordináta a határfalnál vagy nincs pályán.";
+        }else {
+            if(components.get(coordinate2).size() == 1){
+                answer = "A visszavonás nem történt meg. Az adott koordináta alaphelyzetben van.";
+            }
+            else {
+                int IndexOfLastComponent = components.get(coordinate2).size()-1;
+                components.get(coordinate2).remove(IndexOfLastComponent);
+                int IndexOfTheOldComponent = components.get(coordinate2).size()-1;
+                String oldComponent = components.get(coordinate2).get(IndexOfTheOldComponent);
+                map[position[1] - 1][position[0] - 1] = oldComponent;
+                changed.setMap(map);
+                answer = "A visszavonás megtörtént.";
             }
         }
-        changed.setMap(map);
-
+        return answer;
     }
 }
